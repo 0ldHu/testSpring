@@ -6,6 +6,6 @@
     <title>Login</title>
 </head>
 <body>
-<h1 th:text="'Hello, ' + ${text} + '!'">plz input your name and password on URL</h1>
+<h1 th:text="'Hello, ' +${session.user.getName()}+', '+ ${text} + '!'">plz input your name and password on URL</h1>
 </body>
 </html>

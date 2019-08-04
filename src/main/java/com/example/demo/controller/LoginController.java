@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.TesterUser;
+import com.example.demo.mapper.UserMapper;
+import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,10 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 
 @Controller
 public class LoginController {
+
+    @Autowired
+    private UserMapper userMapper;
 
     @GetMapping("/login")
     public String login(@RequestParam(name = "name") String name,
@@ -27,7 +33,15 @@ public class LoginController {
             testerUser.setName(name);
             testerUser.setId(id);
             testerUser.setPwd(pwd);
-            request.getSession().setAttribute(name,testerUser);
+
+            User user = new User();
+            user.setToken(UUID.randomUUID().toString());
+            user.setName(testerUser.getName());
+            user.setAccountId(String.valueOf(testerUser.getId()));
+            user.setGmtCreate(System.currentTimeMillis());
+            user.setGmtModified(user.getGmtCreate());
+            userMapper.insert(user);
+            request.getSession().setAttribute("user",testerUser);
 
             model.addAttribute("text", "Login Success");
 
