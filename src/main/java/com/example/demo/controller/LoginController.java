@@ -38,7 +38,7 @@ public class LoginController {
             testerUser.setPwd(pwd);
 
             User user = new User();
-            String token = UUID.randomUUID().toString();
+            String token = UUID.randomUUID().toString();//一个3000年内不会重复的唯一标识符
             user.setToken(token);
             user.setName(testerUser.getName());
             user.setAccountId(String.valueOf(testerUser.getId()));
