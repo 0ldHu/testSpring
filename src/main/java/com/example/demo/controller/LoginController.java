@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 
@@ -24,6 +26,7 @@ public class LoginController {
                         @RequestParam(name = "id") Long id,
                         @RequestParam(name = "pwd") String pwd,
                         HttpServletRequest request,
+                        HttpServletResponse response,
                         Model model) {
 
         if(name!=null&&id!=null&&pwd!=null)
@@ -35,14 +38,17 @@ public class LoginController {
             testerUser.setPwd(pwd);
 
             User user = new User();
-            user.setToken(UUID.randomUUID().toString());
+            String token = UUID.randomUUID().toString();
+            user.setToken(token);
             user.setName(testerUser.getName());
             user.setAccountId(String.valueOf(testerUser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
             userMapper.insert(user);
+            //登录成功，写入session和cookie
             request.getSession().setAttribute("user",testerUser);
 
+            response.addCookie(new Cookie("token",token));
             model.addAttribute("text", "Login Success");
 
             return "login";

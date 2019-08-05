@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,9 +10,10 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Login</title>
+    <title>TestSpring</title>
 </head>
 <body>
-<h1 th:text="'Hello, ' +${session.user.getName()}+', '+ ${text} + '!'">plz input your name and password on URL</h1>
+    <h1>here is index</h1>
+    <p th:text="'Hello, ' +${session.user.getName()} + '!'"></p>
 </body>
 </html>
