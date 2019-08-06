@@ -44,6 +44,7 @@ public class LoginController {
             user.setAccountId(String.valueOf(testerUser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
+            user.setAvatarUrl("");
             userMapper.insert(user);
             //登录成功，写入session和cookie
             request.getSession().setAttribute("user",testerUser);
