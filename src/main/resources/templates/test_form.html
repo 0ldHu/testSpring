@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <!-- 新 Bootstrap 核心 CSS 文件 -->
@@ -15,13 +15,16 @@
 <body>
 <div class="container">
     <div class="row">
+        <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error!=null}"></div>
+    </div>
+    <div class="row">
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
             <h1>表单部分</h1>
             <h2><span class="glyphicon glyphicon-plus"></span>发起</h2>
-            <form>
+            <form action="/testForm" method="post">
                 <div class="form-group">
                     <label for="questionTitle">发起提问</label>
-                    <input type="text" class="form-control" id="questionTitle" placeholder="Question title here">
+                    <input type="text" class="form-control" id="questionTitle" name="title" placeholder="Question title here">
                 </div>
                 <div class="form-group">
                     <label for="questionContext"></label>

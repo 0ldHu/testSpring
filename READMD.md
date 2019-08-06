@@ -18,7 +18,7 @@ CREATE TABLE question
 (
     id int AUTO_INCREMENT PRIMARY KEY,
     title varchar(50),
-    decription text,
+    description text,
     gmt_create bigint,
     gmt_modified bigint,
     creator int,
