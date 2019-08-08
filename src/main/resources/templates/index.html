@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <!-- 新 Bootstrap 核心 CSS 文件 -->
@@ -13,7 +13,31 @@
     <title>TestSpring</title>
 </head>
 <body>
+
+<div class="container">
     <h1>here is index</h1>
     <p th:text="'Hello, ' +${session.user.getName()} + '!'"></p>
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+            <div class="media" th:each="question : ${questions}">
+                <div class="media-left">
+                    <a href="#">
+                        <img th:src="@{question.user.avatarUrl}" alt="头像" class="media-object" style="width: 35px">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" th:text="${question.title}">Title</h4>
+                    <p th:text="${question.description}">context</p>
+                    <span style="font-size: 12px; font-weight: normal; color: #999;"
+                          th:text="${question.commentCount}+'个回复 · '+${question.viewCount}+'次浏览 · '+${#dates.format(question.gmtCreate,'dd MMMM yyyy')}">
+
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">右侧的静态部分</div>
+    </div>
+
+</div>
 </body>
 </html>
