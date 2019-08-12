@@ -19,7 +19,7 @@
     <p th:text="'Hello, ' +${session.user.getName()} + '!'"></p>
     <div class="row">
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-            <div class="media" th:each="question : ${questions}">
+            <div class="media" th:each="question : ${pagination.questions}">
                 <div class="media-left">
                     <a href="#">
                         <img th:src="@{question.user.avatarUrl}" alt="头像" class="media-object" style="width: 35px">
